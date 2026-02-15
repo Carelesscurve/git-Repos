@@ -1,0 +1,11 @@
+{
+  "name": "local-git-quickref",
+  "version": "1.0.0",
+  "description": "Serve the static Git quick reference locally",
+  "scripts": {
+    "start": "npx http-server . -p 8000",
+    "start:py": "python app.py"
+  },
+  "author": "",
+  "license": "MIT"
+}
