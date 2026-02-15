@@ -120,6 +120,156 @@ git push -u origin new-branch</code></pre>
         </p>
       </footer>
     </main>
+
+    <section class="advanced-card">
+      <h2>Advanced: Merge, Rebase &amp; Squash</h2>
+
+      <div class="subsection">
+        <h3>Git Merge</h3>
+        <p>
+          Combines two branches by creating a <strong>merge commit</strong> that
+          ties the histories together. Preserves the full history of both
+          branches.
+        </p>
+
+        <p><strong>Scenario:</strong></p>
+        <pre class="diagram"><code>Before merge:
+master:  A - B - C
+         /
+feature:      D - E
+
+After git merge feature (on master):
+master:  A - B - C - M (merge commit)
+         \         /
+feature:      D - E</code></pre>
+
+        <p><strong>Use command:</strong></p>
+        <pre><code>git checkout master
+git merge feature</code></pre>
+
+        <p><strong>When to use:</strong></p>
+        <ul>
+          <li>Merging stable feature branches back to Main</li>
+          <li>You want to keep all history and context</li>
+          <li>Working in a team (safer, explicit merge points)</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>Git Rebase</h3>
+        <p>
+          Re-applies your commits on top of another branch. Creates a
+          <strong>linear history</strong> without merge commits.
+        </p>
+
+        <p><strong>Scenario:</strong></p>
+        <pre class="diagram"><code>Before rebase:
+master:  A - B - C
+         /
+feature:      D - E
+
+After git rebase master (on feature):
+master:  A - B - C
+              \
+feature:       D' - E'</code></pre>
+
+        <p><strong>Use commands:</strong></p>
+        <pre><code>git checkout feature
+git rebase master
+
+# Or rebase interactively (choose, reorder, squash commits):
+git rebase -i master
+# or -i HEAD~3 (rebase last 3 commits)</code></pre>
+
+        <p><strong>When to use:</strong></p>
+        <ul>
+          <li>Keep a clean, linear commit history</li>
+          <li>Before pushing to keep remote history tidy</li>
+          <li>Personal branches (not shared with team)</li>
+          <li>Interactive rebase to clean up messy commits</li>
+        </ul>
+
+        <p style="color: #f87171">
+          <strong>⚠️ Warning:</strong> Never rebase public/shared commits
+          (already pushed). Rebase only local commits or risk conflicts for
+          teammates.
+        </p>
+      </div>
+
+      <div class="subsection">
+        <h3>Squash Commits</h3>
+        <p>
+          Combine multiple commits into one. Useful before merging a feature to
+          reduce noise.
+        </p>
+
+        <p><strong>Scenario:</strong></p>
+        <pre class="diagram"><code>Before squash:
+feature:  add feature - fix typo - adjust styles - update config
+
+After squashing:
+feature:  add feature (with all changes)</code></pre>
+
+        <p><strong>Method 1: Using rebase -i</strong></p>
+        <pre><code>git rebase -i master
+# In your editor:
+#   pick   add feature
+#   squash fix typo
+#   squash adjust styles
+#   squash update config
+# Save and edit the new commit message</code></pre>
+
+        <p><strong>Method 2: Reset to a commit and re-commit</strong></p>
+        <pre><code>git reset --soft master
+git commit -m "Add feature with all changes"</code></pre>
+
+        <p><strong>Method 3: Merge with --squash</strong></p>
+        <pre><code>git checkout master
+git merge --squash feature
+git commit -m "Merge feature (squashed)"</code></pre>
+
+        <p><strong>When to use:</strong></p>
+        <ul>
+          <li>Clean up working branches before PR/merge</li>
+          <li>Hide intermediate "fix typo" or "oops" commits</li>
+          <li>Keep the main branch history concise</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>Quick Comparison</h3>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Operation</th>
+              <th>History</th>
+              <th>Best For</th>
+              <th>Risk</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Merge</strong></td>
+              <td>Creates merge commit</td>
+              <td>Team collaboration</td>
+              <td>Cluttered history</td>
+            </tr>
+            <tr>
+              <td><strong>Rebase</strong></td>
+              <td>Linear, clean</td>
+              <td>Personal branches</td>
+              <td>Breaks shared history</td>
+            </tr>
+            <tr>
+              <td><strong>Squash</strong></td>
+              <td>One commit</td>
+              <td>Feature PRs</td>
+              <td>Loses intermediate info</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <script src="app.js"></script>
   </body>
 </html>
