@@ -1,67 +1,125 @@
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>Local Git Quick Reference</title>
-	<link rel="stylesheet" href="app.css">
-</head>
-<body>
-	<main class="card">
-		<h1>Local Git Quick Reference</h1>
-		<p class="lead">A small cheat-sheet for initializing, committing, branching, and pushing.</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Local Git Quick Reference</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>Local Git Quick Reference</h1>
+      <p class="lead">
+        A small cheat-sheet for initializing, committing, branching, and
+        pushing.
+      </p>
 
-		<ol class="steps">
-			<li><strong>Go to the folder</strong> you want the repo in (use your terminal):
-				<pre><code>cd path/to/your/folder</code></pre>
-			</li>
+      <ol class="steps">
+        <li>
+          <strong>Go to the folder</strong> you want the repo in (use your
+          terminal):
+          <pre><code>cd path/to/your/folder</code></pre>
+        </li>
 
-			<li><strong>Initialize a repo</strong>:
-				<pre><code>git init</code></pre>
-			</li>
+        <li>
+          <strong>Initialize a repo</strong>:
+          <pre><code>git init</code></pre>
+        </li>
 
-			<li><strong>To commit a change</strong>:
-				<ol>
-					<li>Stage files: <pre><code>git add .</code></pre> or <pre><code>git add file.txt</code></pre></li>
-					<li>Create a commit: <pre><code>git commit -m "Message text description"</code></pre></li>
-				</ol>
-			</li>
+        <li>
+          <strong>To commit a change</strong>:
+          <ol>
+            <li>
+              Stage files:
+              <pre><code>git add .</code></pre>
+              or
+              <pre><code>git add file.txt</code></pre>
+            </li>
+            <li>
+              Create a commit:
+              <pre><code>git commit -m "Message text description"</code></pre>
+            </li>
+          </ol>
+        </li>
 
-			<li><strong>View commits</strong>:
-				<pre><code>git log</code></pre>
-			</li>
+        <li>
+          <strong>View commits</strong>:
+          <pre><code>git log</code></pre>
+        </li>
 
-			<li><strong>Checkout commit or branch</strong>:
-				<pre><code>git checkout &lt;commit-id-or-branch-name&gt;</code></pre>
-				<p>To create and switch to a new branch:</p>
-				<pre><code>git checkout -b branch-name</code></pre>
-			</li>
+        <li>
+          <strong>Checkout commit or branch</strong>:
+          <pre><code>git checkout &lt;commit-id-or-branch-name&gt;</code></pre>
+          <p>To create and switch to a new branch:</p>
+          <pre><code>git checkout -b branch-name</code></pre>
+        </li>
 
-			<li><strong>Connect to GitHub (add remote)</strong>:
-				<p>If you use SSH keys:</p>
-				<pre><code>git remote add origin git@github.com:username/repo.git</code></pre>
-				<p>If you don't use SSH keys, follow the link below to set them up in a new tab:</p>
-				<p><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" target="_blank" rel="noopener">Set up SSH keys (opens new tab)</a></p>
-			</li>
+        <li>
+          <strong>Connect to GitHub (add remote)</strong>:
+          <p>If you use SSH keys:</p>
+          <pre><code>git remote add origin git@github.com:username/repo.git</code></pre>
+          <p>
+            If you don't use SSH keys, follow the link below to set them up in a
+            new tab:
+          </p>
+          <p>
+            <a
+              href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh"
+              target="_blank"
+              rel="noopener"
+              >Set up SSH keys (opens new tab)</a
+            >
+          </p>
+        </li>
 
-			<li><strong>Push to GitHub</strong>:
-				<pre><code>git push -u origin master
+        <li>
+          <strong>Configure Git user &amp; check config</strong>:
+          <p>Set your name and email for commits (local repo):</p>
+          <pre><code>git config user.name "CarelessCurve"
+git config user.email "you@example.com"</code></pre>
+          <p>Set globally (applies to all repos on this machine):</p>
+          <pre><code>git config --global user.name "CarelessCurve"
+git config --global user.email "you@example.com"</code></pre>
+          <p>Check configured values:</p>
+          <pre><code>git config user.name
+git config user.email
+git config --list</code></pre>
+          <p>Edit config file in your editor:</p>
+          <pre><code>git config --edit
+git config --global --edit</code></pre>
+          <p>
+            On Windows your global config typically lives at
+            <code>%USERPROFILE%\.gitconfig</code>.
+          </p>
+        </li>
+
+        <li>
+          <strong>Push to GitHub</strong>:
+          <pre><code>git push -u origin master
 git push -u origin new-branch</code></pre>
-			</li>
+        </li>
 
-			<li><strong>Create and merge pull requests</strong>:
-				<p>On GitHub open a Pull Request from your branch; repo owner can merge and resolve conflicts there.</p>
-			</li>
+        <li>
+          <strong>Create and merge pull requests</strong>:
+          <p>
+            On GitHub open a Pull Request from your branch; repo owner can merge
+            and resolve conflicts there.
+          </p>
+        </li>
 
-			<li><strong>Pull changes from remote</strong>:
-				<pre><code>git pull origin master</code></pre>
-			</li>
-		</ol>
+        <li>
+          <strong>Pull changes from remote</strong>:
+          <pre><code>git pull origin master</code></pre>
+        </li>
+      </ol>
 
-		<footer class="meta">
-			<p>Quick tips: replace <code>master</code> with your repo's default branch if different (e.g., <code>main</code>).</p>
-		</footer>
-	</main>
-	<script src="app.js"></script>
-	</body>
+      <footer class="meta">
+        <p>
+          Quick tips: replace <code>master</code> with your repo's default
+          branch if different (e.g., <code>main</code>).
+        </p>
+      </footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
 </html>
